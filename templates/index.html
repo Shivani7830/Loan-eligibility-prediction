@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <title>loan app</title>
+      <style>
+
+@font-face {
+  font-family: Raleway-Black;
+  src: url('../fonts/raleway/Raleway-Black.ttf');
+}
+
+@font-face {
+  font-family: Raleway-SemiBold;
+  src: url('../fonts/raleway/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Bold;
+  src: url('../fonts/raleway/Raleway-Bold.ttf');
+}
+
+
+p{
+  color: black !important;
+  font-family: Raleway-SemiBold, sans-serif !important;
+
+}
+
+body, html {
+	height: 100%;
+	font-family: Raleway-SemiBold, sans-serif;
+}
+
+body{
+  background-image: url("templates/back-pix.jpg");
+   background-repeat: no-repeat, repeat;
+    background-position: center; /* Center the image */
+    background-size: cover;}
+  /* background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);  /* Chrome 10-25, Safari 5.1-6 */
+  /* background: linear-gradient(to right, #6E48AA, #9D50BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ */ */
+
+
+
+a {
+	font-family: Raleway-SemiBold;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+.main{
+  margin-top: 12vh;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+.highlight{
+  text-decoration: underline !important;
+  color: #9D50BB !important;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-bottom: 9px;
+}
+
+p,.control-label {
+	font-family: Raleway-SemiBold;
+	font-size: 18px !important;
+	color: #666666;
+	margin: 0px;
+}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+.main_heading{
+  margin-top: -15px !important;
+  font-size: 50px !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.logo{
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+}
+
+input {
+  border-radius: 10px !important;
+  height: 43px !important;
+}
+
+
+
+
+select{
+  border-radius: 10px !important;
+  height: 43px !important;
+  width: 100%;
+
+}
+
+
+button {
+  border-radius: 20px !important;
+	outline: none !important;
+  height: 40px !important;
+  width: 100px;
+  color: #800000 !important;
+  background: #800000 !important;
+  background: -webkit-linear-gradient(to right, #9D50BB, #9D50BB) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #9D50BB, #9D50BB) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+button:hover {
+	cursor: pointer;
+}
+.bottom p{
+  color: black !important;
+  background: #F8F8FF;
+  width: 1145px;
+  margin: auto;
+  size: 10px;
+
+}
+
+      </style>
+  </head>
+
+  <body>
+
+<div class="container main">
+  <div class="jumbotron" id="holder">
+     <br>
+       <center><b><h2 style="color:#FF0000";>{{ prediction_text}}</h2></b></center>
+     <br>
+     <br>
+    <center><h1 class='main_heading'> Loan Approval Prediction Model</h1></center>
+    <p>This Web Based Application is processed by a Machine Learning Algorithm to  predict whether a loan would be approved or not. [Note that this model is 83% accurate]</p>
+    <br>
+    <div class="instructions">
+      <h2>Instructions: </h2>
+      <p>1. Please Enter values for the following fields</p>
+      <p>2. click predict  [NOTE: 0 means No while 1 means Yes]</p>
+    </div>
+
+    <form class="form-horizontal" action="{{ url_for('predict')}}"method="post">
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input  class="form-control" type= "text" name="ApplicantIncome" placeholder="Your Income" required="required" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input  class="form-control" type="text" name="CoaplicantIncome" placeholder="Co-applicant(garantor)Income" required="required" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input  class="form-control" type="text" name="LoanAmount" placeholder="Loan Amount" required="required" />
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number" name="Loan_Amount_Term" required="required">
+                <option value="0">loan term:</option>
+                <option value="240">6 months</option>
+                <option value="360">12 months</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number"  name="Credit_History" required="required">
+                <option value="0">Credit History:</option>
+                <option value="1">yes</option>
+                <option value="0">no</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number" name="Self_Employed" required="required">
+                <option value="0">Self Employed:</option>
+                <option value="1">yes</option>
+                <option value="0">no</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number" name="Property_Area" required="required">
+                <option value="0">Property_Area:</option>
+                <option value="2">urban</option>
+                <option value="1">semiurban</option>
+                <option value="0">rural</option>
+          </select>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number"  name="Married" required="required">
+                <option value="0">Married:</option>
+                <option value="1">yes</option>
+                <option value="0">no</option>
+          </select>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number"  name="Education" required="required">
+                <option value="0">Education:</option>
+                <option value="1">Graduate</option>
+                <option value="0">not Graduate</option>
+          </select>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" type="number"  name="Gender" required="required">
+                <option value="0">Gender:</option>
+                <option value="1">male</option>
+                <option value="0">female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+         <center><button type="submit" class="button btn btn-default">PREDICT</button><center/>
+        </div>
+      </div>
+    </form>
+
+
+
+    <h2 class="result"></h2>
+  </div>
+  </div>
+
+  </body>
+</html>
